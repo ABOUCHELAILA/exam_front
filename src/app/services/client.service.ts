@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Client } from '../models/client.model';
 import { Observable } from 'rxjs';
+import { Client } from '../models/client.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ClientService {
   private apiUrl = 'http://localhost:8080/api/clients';
 
