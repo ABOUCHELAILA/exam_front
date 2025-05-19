@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from 'src/app/services/client.service';
-import { Client } from 'src/app/models/client.model';
+import { CommonModule } from '@angular/common';
+import { ClientService } from '../../services/client.service';
+import { Client } from '../../models/client.model';
 
 @Component({
-  selector: 'app-client-list',
-  templateUrl: './client-list.component.html',
   standalone: true,
-  imports: []
+  imports: [CommonModule],
+  selector: 'app-client-list',
+  templateUrl: './client-list.component.html'
 })
 export class ClientListComponent implements OnInit {
   clients: Client[] = [];
@@ -14,9 +15,8 @@ export class ClientListComponent implements OnInit {
   constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
-    this.clientService.getClients().subscribe((data) => {
+    this.clientService.getClients().subscribe((data: Client[]) => {
       this.clients = data;
-      console.log(data);
     });
   }
 }

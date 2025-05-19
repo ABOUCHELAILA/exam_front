@@ -1,26 +1,23 @@
 import { Component } from '@angular/core';
-import { ClientService } from 'src/app/services/client.service';
-import { Client } from 'src/app/models/client.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ClientService } from '../../services/client.service';
+import { Client } from '../../models/client.model';
 
 @Component({
-  selector: 'app-add-client',
-  templateUrl: './add-client.component.html',
   standalone: true,
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule],
+  selector: 'app-add-client',
+  templateUrl: './add-client.component.html'
 })
 export class AddClientComponent {
-  client: Client = {
-    nom: '',
-    email: ''
-  };
+  client: Client = { id: 0, nom: '', email: '' };
 
   constructor(private clientService: ClientService, private router: Router) {}
 
-  ajouterClient() {
-    this.clientService.createClient(this.client).subscribe(() => {
+  addClient() {
+    this.clientService.addClient(this.client).subscribe(() => {
       this.router.navigate(['/clients']);
     });
   }
